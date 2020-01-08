@@ -20,7 +20,7 @@ textarea, input, button {
 }
 
 #message-input {
-  width: 26.5em;
+  width: 295px;
   height: 80px;
   font-family: 'Courier New', Courier, monospace;
   color: gray;
@@ -35,5 +35,4 @@ textarea, input, button {
   color: rgb(255, 255, 255);
   background: rgb(170, 170, 170);
   opacity: 1;
-  border-radius: 6px;
 }

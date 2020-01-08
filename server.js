@@ -1,41 +1,41 @@
 const express = require('express');
-var cron = require('node-cron');
 const cors = require('cors');
+const sgMail = require('@sendgrid/mail');
+var bodyParser = require('body-parser');
 
 const app = express();
 
 require('dotenv').config()
 
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(cors());
 
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const msg = {
-  to: 'zechnwhite@gmail.com',
-  from: 'zechnwhite@gmail.com',
-  subject: 'happy birthday! :)',
-  text: 'and easy to do anywhere, even with Node.js',
-  html: '<h2>Yee Haw!</h2><p><strong>Lick my love pump.</strong></p>'
-};
 
 // cron.schedule('* * * * *', () => {
-//     console.log('running a task every minute');
-//     sgMail.send(msg);
-// });
-
-app.use(express.static('public'));
-
-app.get('/sendemail', (req, res) => {
-  const thisMsg = {
+  //     console.log('running a task every minute');
+  //     sgMail.send(msg);
+  // });
+  
+  app.use(express.static('public'));
+  
+  app.post('/api/sendmail', (req, res) => {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  const msg = {
     to: 'zechnwhite@gmail.com',
-    from: 'zechnwhite@gmail.com',
+    from: req.body.email,
     subject: 'happy birthday! :)',
-    text: 'and easy to do anywhere, even with Node.js',
-    html: '<h2>Yee Haw!</h2><p><strong>Lick my love pump.</strong></p>'
+    text: 'hello',
+    html: '<p>hello</p>'
   };
-  sgMail.send(thisMsg);
+  sgMail.send(msg)
+  .then(res.send('hello'))
+  .catch(err => {
+    console.log(err)
+  })
 });
 
 if(process.env.NODE_ENV === 'production') {
