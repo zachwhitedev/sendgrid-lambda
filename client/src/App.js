@@ -10,18 +10,15 @@ function App() {
   })
 
   const onSubmit = () => {
-    setState({
-      ...state,
-      email: '',
-      message: '',
-      submitMessage: ''
-    });
     axios.post('/api/sendmail', {
       email: state.email,
       message: state.message
     })
     .then(res => setState({
-      ...state, submitMessage: (res.data.message),
+      ...state, 
+      submitMessage: (res.data.message),
+      email: '',
+      message: ''
     }))
     .catch(err => console.log(err))
   }
