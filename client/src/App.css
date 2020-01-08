@@ -1,0 +1,39 @@
+.form-container {
+  border: 1px solid rgb(207, 207, 207);
+  width: 300px;
+  margin: 80px auto 0 auto;
+  padding: 20px;
+  background: rgb(241, 241, 241);
+}
+
+textarea, input, button {
+  outline: none;
+}
+
+#email-input {
+  margin-bottom: 10px;
+  width: 14em;
+  font-family: 'Courier New', Courier, monospace;
+  color: gray;
+  font-weight: bold;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+#message-input {
+  width: 26.5em;
+  height: 80px;
+  font-family: 'Courier New', Courier, monospace;
+  color: gray;
+  font-weight: bold;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+#send-btn {
+  padding: 4px 18px;
+  margin-top: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(255, 255, 255);
+  background: rgb(170, 170, 170);
+  opacity: 1;
+  border-radius: 6px;
+}
