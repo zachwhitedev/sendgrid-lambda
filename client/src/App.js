@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
 function App() {
   const[state, setState] = useState({
     email: '',
-    message: ''
+    message: '',
+    submitMessage: ''
   })
 
   const onSubmit = () => {
@@ -13,7 +14,9 @@ function App() {
       email: state.email,
       message: state.message
     })
-    .then(res => console.log(res))
+    .then(res => setState({
+      ...state, submitMessage: (res.data.message),
+    }))
     .catch(err => console.log(err))
   }
       
@@ -21,10 +24,6 @@ function App() {
   const onChangeHandler = (e) => {
     setState({...state, [e.target.name]: e.target.value});
   }
-
-  useEffect(() => {
-    console.log(state.message)
-  })
 
   return (
     <div className="App">
@@ -51,6 +50,7 @@ function App() {
           ></textarea>
         </div>
         <button id='send-btn' onClick={() => onSubmit()}>Send</button>
+        <p id='submitMessage'>{state.submitMessage}</p>
       </div>
 
     </div>
