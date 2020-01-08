@@ -3,59 +3,65 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
-  const[state, setState] = useState({
+  const [state, setState] = useState({
     email: '',
     message: '',
     submitMessage: ''
-  })
+  });
 
   const onSubmit = () => {
-    axios.post('/api/sendmail', {
-      email: state.email,
-      message: state.message
-    })
-    .then(res => setState({
-      ...state, 
-      submitMessage: (res.data.message),
-      email: '',
-      message: ''
-    }))
-    .catch(err => console.log(err))
-  }
-      
+    axios
+      .post('/api/sendmail', {
+        email: state.email,
+        message: state.message
+      })
+      .then(res =>
+        setState({
+          ...state,
+          submitMessage: res.data.message,
+          email: '',
+          message: ''
+        })
+      )
+      .catch(err => console.log(err));
+  };
 
-  const onChangeHandler = (e) => {
-    setState({...state, [e.target.name]: e.target.value});
-  }
+  const onChangeHandler = e => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
   return (
-    <div className="App">
+    <div className='App'>
       <div className='form-container'>
         <div>
-          <input 
+          <input
             id='email-input'
-            type='email' 
+            type='email'
             placeholder='email'
             name='email'
-            onChange={(e) => {onChangeHandler(e)}}
+            onChange={e => {
+              onChangeHandler(e);
+            }}
             value={state.email}
-            >
-          </input>
+          ></input>
         </div>
         <div>
           <textarea
-          id='message-input'
-          type='text'
-          placeholder='message'
-          name='message'
-          onChange={(e) => {onChangeHandler(e)}}
-          value={state.message}
+            id='message-input'
+            type='text'
+            placeholder='message'
+            name='message'
+            onChange={e => {
+              onChangeHandler(e);
+            }}
+            value={state.message}
           ></textarea>
         </div>
-        <button id='send-btn' onClick={() => onSubmit()}>Send</button>
+        <button id='send-btn' onClick={() => onSubmit()}>
+          Send
+        </button>
         <p id='submitMessage'>{state.submitMessage}</p>
       </div>
-
     </div>
   );
 }
