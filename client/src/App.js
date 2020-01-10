@@ -37,7 +37,7 @@ function App() {
           <input
             id='email-input'
             type='email'
-            placeholder='email'
+            placeholder='youremail@gmail.com'
             name='email'
             onChange={e => {
               onChangeHandler(e);
