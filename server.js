@@ -20,7 +20,7 @@ app.post('/api/sendmail', (req, res) => {
     from: req.body.email,
     subject: 'A Message for Zach',
     text: req.body.message,
-    html: `<h4 style="color: #5e9ca0;">Some moron messaged you and wrote:</h4><p>${req.body.message}</p>`
+    html: `<h4 style="color: #5e9ca0;">Someone messaged you and wrote:</h4><p>${req.body.message}</p>`
     // html: '<h1 style="color: #5e9ca0;">You can edit <span style="color: #2b2301;">this demo</span> text!</h1> <h2 style="color: #2e6c80;">This is a sample sub header for the email:</h2> <p>And here you will find a bunch of random words that mean nothing but at least you can put whatever you want here. Also Peter is a bitch.</p>'
   };
   sgMail.send(msg)
